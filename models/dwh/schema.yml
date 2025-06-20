@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: fact_health_status
+    description: "Fact table summarizing health status and risk indicators"
+    columns:
+      - name: person_id
+        description: "Primary identifier for individuals"
+        tests:
+          - not_null
+          - unique
+
+      - name: record_date
+        description: "Date of health record"
+        tests:
+          - not_null
+
+      - name: risk_score
+        description: "Sum of all risk indicator flags"
+        tests:
+          - not_null
+          - accepted_values:
+              values: [0, 1, 2, 3, 4]
